@@ -1,0 +1,12 @@
+<!-- Comments From -->
+<%= form_with url: post_comments_path(post) do |form| %>
+  <div class="field">
+    <%= form.label :content %><br>
+    <%= form.text_area :content %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<br>
