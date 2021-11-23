@@ -4,8 +4,13 @@
 <% @posts.each do |post| %>
   <strong><%= post.title %></strong><br>
   <%= post.created_at %><br>
+  <%= link_to "View post", post_path(post) %><br>
+  <br>
 <% end %>
 
-<%= link_to "New Post", new_post_path %>
+<br>
+<br>
+<%= link_to "New Post", new_post_path %><br>
+<%= link_to "Log Out", destroy_user_session_path, method: :delete %>
 
 

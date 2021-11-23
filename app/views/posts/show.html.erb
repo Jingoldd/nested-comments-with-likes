@@ -1,7 +1,13 @@
 <h1><%= @post.title %></h1>
 
-<p><%= @post.content %></p>
+<p><%= @post.content %></p><br>
 
+<strong>Comments</strong><br>
+
+<%= render @post.comments %>
+
+<br>
+<br>
 <%= link_to "Back Home", root_path %>
 
 
