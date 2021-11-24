@@ -1,14 +1,12 @@
-<br>
-
 <!-- 'Parent' Comments-->
 <p><strong><%= comment.content %></strong></p>
 <p>by <i><%= comment.user.email %></i> at <i><%= comment.created_at %></i></p>
 
 <!-- Form to reply a comment -->
 <%= render partial: 'comments/form', locals: { post: comment.post }%>
+<hr>
 
 <!-- Comment replies -->
 <div class="child-comment">
   <%= render comment.comments %>
 </div>
-<br>

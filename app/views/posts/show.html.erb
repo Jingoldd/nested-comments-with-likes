@@ -2,15 +2,33 @@
 
 <p><%= @post.content %></p><br>
 
-<strong>Comments</strong><br>
-
-<!-- Render only 'Parent' comments (parent_id: nil) -->
-<%= render @post.comments.where(parent_id: nil).includes(:user, :comments).order(created_at: :desc) %>
+<strong>Add a comment</strong>
+<br>
+<br>
 
 <!-- Comments form -->
 <%= render partial: 'comments/form', locals: { post: @post } %>
 <br>
+
+<% if user_signed_in? && @post.user_id === current_user[:id] %>
+  <%= link_to 'Edit this post', edit_post_path(@post) %>
+<% end %>
 <br>
+<br>
+
 <%= link_to "Back Home", root_path %>
+<br>
+<br>
+<h2>All Comments</h2>
+
+<% if @post.comments.empty? %>
+  No comments for this post yet
+<% else %>
+  <!-- Render only 'Parent' comments (parent_id: nil) -->
+  <%= render @post.comments.where(parent_id: nil).includes(:user, :comments).order(created_at: :desc) %>
+<% end %>
+<br>
+
+
 
 
