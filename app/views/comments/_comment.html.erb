@@ -8,5 +8,5 @@
 
 <!-- Comment replies -->
 <div class="child-comment">
-  <%= render comment.comments %>
+  <%= render comment.comments.order(id: :desc) %>
 </div>

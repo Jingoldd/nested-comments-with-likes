@@ -25,7 +25,7 @@
   No comments for this post yet
 <% else %>
   <!-- Render only 'Parent' comments (parent_id: nil) -->
-  <%= render @post.comments.where(parent_id: nil).includes(:user, :comments).order(created_at: :desc) %>
+  <%= render @post.comments.where(parent_id: nil).includes(:user, :comments).order(id: :desc) %>
 <% end %>
 <br>
 
