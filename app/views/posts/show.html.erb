@@ -4,9 +4,11 @@
 
 <strong>Comments</strong><br>
 
-<%= render @post.comments.includes(:user).order(created_at: :desc) %>
-<%= render partial: 'comments/form', locals: { post: @post } %>
+<!-- Render only 'Parent' comments (parent_id: nil) -->
+<%= render @post.comments.where(parent_id: nil).includes(:user, :comments).order(created_at: :desc) %>
 
+<!-- Comments form -->
+<%= render partial: 'comments/form', locals: { post: @post } %>
 <br>
 <br>
 <%= link_to "Back Home", root_path %>
