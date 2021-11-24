@@ -3,6 +3,10 @@
   <div class="field">
     <%= form.text_area :content %>
   </div>
+  <!-- Only pass the parent_id for 'child' comments -->
+  <% unless parent.nil? %> 
+    <%= form.hidden_field :parent_id, value: "#{parent.id}" %>
+  <% end %>
   <br>
   <div class="actions">
     <%= form.submit "Comment" %>

@@ -6,8 +6,8 @@
 <br>
 <br>
 
-<!-- Comments form -->
-<%= render partial: 'comments/form', locals: { post: @post } %>
+<!-- 'Parent' Comments form -->
+<%= render partial: 'comments/form', locals: { post: @post, parent: nil } %> <!-- parent comments has no parent -->
 <br>
 
 <% if user_signed_in? && @post.user_id === current_user[:id] %>

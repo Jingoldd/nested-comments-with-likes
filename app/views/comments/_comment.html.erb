@@ -3,7 +3,7 @@
 <p>by <i><%= comment.user.email %></i> at <i><%= comment.created_at %></i></p>
 
 <!-- Form to reply a comment -->
-<%= render partial: 'comments/form', locals: { post: comment.post }%>
+<%= render partial: 'comments/form', locals: { post: comment.post, parent: comment }%>
 <hr>
 
 <!-- Comment replies -->
