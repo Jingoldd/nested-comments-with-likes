@@ -2,6 +2,32 @@
 
 <p><%= @post.content %></p><br>
 
+<!-- Like/Unlike button -->
+  <p><%= @post.likes.count %> likes</p>
+  
+  <% like = current_user.likes.find_by(post: @post) %>
+  
+  <% if like.nil? %>
+    <!-- button_to helper format -->
+    <%= button_to "Like", likes_path, params: { post_id: @post.id } %>
+    
+    <!-- form_with format -->
+    <%# <%= form_with url: likes_path do |form| %> 
+    <%#  <%= form.hidden_field :post_id, value: "#{@post.id}" %>
+    <%#  <%= form.submit "Like" %>
+    <%# <% end %> 
+  <% else %>
+    
+    <!-- button_to helper format -->
+    <%= button_to "Unlike", like_path(like), method: :delete %>
+    
+    <!-- form_with format -->
+    <%# <%= form_with model: like, method: :delete do |form| %> 
+    <%#  <%= form.submit "Unlike" %>
+    <%# <% end %>
+  <% end %>
+
+<br>
 <strong>Add a comment</strong>
 <br>
 <br>

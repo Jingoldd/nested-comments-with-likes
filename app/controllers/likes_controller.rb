@@ -20,6 +20,6 @@ class LikesController < ApplicationController
   private
 
   def like_params
-    params.require(:like).permit(:post_id) #create method through current_user already sets user_id   
+    params.permit(:post_id) #create method through current_user already sets user_id   
   end  
 end
