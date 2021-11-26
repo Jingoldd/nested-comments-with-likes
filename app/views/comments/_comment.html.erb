@@ -2,6 +2,10 @@
 <p><strong><%= comment.content %></strong></p>
 <p>by <i><%= comment.user.email %></i> at <i><%= comment.created_at %></i></p>
 
+<!-- Like button with likeable: comment -->
+<%= render partial: 'likes/button', locals: { likeable: comment } %>
+<br>
+
 <!-- Form to reply a comment -->
 <%= render partial: 'comments/form', locals: { post: comment.post, parent: comment }%>
 <hr>

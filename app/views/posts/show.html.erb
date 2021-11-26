@@ -2,33 +2,8 @@
 
 <p><%= @post.content %></p><br>
 
-<!-- Like/Unlike button -->
-  <p><%= @post.likes.count %> likes</p>
-  
-  <% if user_signed_in? %>
-    <% like = current_user.likes.find_by(likeable: @post) %> 
-    
-    <% if like.nil? %>
-      <!-- button_to helper format, for polymorphism another hidden field for likeable_type should be added -->
-      <%= button_to "Like", likes_path, params: { likeable_id: @post.id, likeable_type: "Post" } %>
-      
-      <!-- form_with format -->
-      <%# <%= form_with url: likes_path do |form| %> 
-      <%#  <%= form.hidden_field :likeable_id, value: "#{@post.id}" %>
-      <%#  <%= form.hidden_field :likeable_type, value: "Post" %>
-      <%#  <%= form.submit "Like" %>
-      <%# <% end %> 
-    <% else %>
-      
-      <!-- button_to helper format -->
-      <%= button_to "Unlike", like_path(like), method: :delete %>
-      
-      <!-- form_with format -->
-      <%# <%= form_with model: like, method: :delete do |form| %> 
-      <%#  <%= form.submit "Unlike" %>
-      <%# <% end %>
-    <% end %>
-  <% end %>
+<!-- Render like/unlike button, likeable should be set -->
+<%= render partial: 'likes/button', locals: { likeable: @post } %>
 
 <br>
 <strong>Add a comment</strong>

@@ -1,0 +1,28 @@
+<!-- Like/Unlike button -->
+<!-- In order to reuse this partial, @post should become an argument that is passed when rendering (likeable) -->
+  <p><%= likeable.likes.count %> likes</p>
+  
+  <% if user_signed_in? %>
+    <% like = current_user.likes.find_by(likeable: likeable) %> 
+    
+    <% if like.nil? %>
+      <!-- button_to helper format, for polymorphism another hidden field for likeable_type should be added -->
+      <%= button_to "Like", likes_path, params: { likeable_id: likeable.id, likeable_type: likeable.class.to_s } %>
+      
+      <!-- form_with format -->
+      <%# <%= form_with url: likes_path do |form| %> 
+      <%#  <%= form.hidden_field :likeable_id, value: "#{likeable.id}" %>
+      <%#  <%= form.hidden_field :likeable_type, value: "#{likeable.class.to_s}" %>
+      <%#  <%= form.submit "Like" %>
+      <%# <% end %> 
+    <% else %>
+      
+      <!-- button_to helper format -->
+      <%= button_to "Unlike", like_path(like), method: :delete %>
+      
+      <!-- form_with format -->
+      <%# <%= form_with model: like, method: :delete do |form| %> 
+      <%#  <%= form.submit "Unlike" %>
+      <%# <% end %>
+    <% end %>
+  <% end %>

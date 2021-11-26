@@ -7,4 +7,7 @@ class Comment < ApplicationRecord
   # Nested comments associations setup
   belongs_to :parent, class_name: 'Comment', optional: true #'Parent' class don't exist, we have to specify the class name. Optional true for 'parent' comments
   has_many :comments, foreign_key: :parent_id # We have to specify the column of the table to find the 'child' comments
+
+  # Polymorphic likes association
+  has_many :likes, as: :likeable, dependent: :destroy
 end
