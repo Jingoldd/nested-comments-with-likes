@@ -10,12 +10,17 @@
 <br>
 <br>
 
-<!-- 'Parent' Comments form -->
-<%= render partial: 'comments/form', locals: { post: @post, parent: nil } %> <!-- parent comments has no parent -->
-<br>
-
 <% if user_signed_in? && @post.user_id === current_user[:id] %>
+  <!-- 'Parent' Comments form -->
+  <%= render partial: 'comments/form', locals: { post: @post, parent: nil } %> <!-- parent comments has no parent -->
+  <br>
   <%= link_to 'Edit this post', edit_post_path(@post) %>
+<% elsif user_signed_in? %>
+  <!-- 'Parent' Comments form -->
+  <%= render partial: 'comments/form', locals: { post: @post, parent: nil } %> <!-- parent comments has no parent -->
+<% else %> 
+  <%= link_to "Log in", new_user_session_path %> <strong> or </strong>
+  <%= link_to "Sign Up", new_user_registration_path %> to comment!
 <% end %>
 <br>
 <br>

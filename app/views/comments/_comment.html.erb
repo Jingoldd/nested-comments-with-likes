@@ -7,7 +7,12 @@
 <br>
 
 <!-- Form to reply a comment -->
-<%= render partial: 'comments/form', locals: { post: comment.post, parent: comment }%>
+<% if user_signed_in? %>
+  <%= render partial: 'comments/form', locals: { post: comment.post, parent: comment }%>
+<% else %>
+  <%= link_to "Log in", new_user_session_path %> <strong> or </strong>
+  <%= link_to "Sign Up", new_user_registration_path %> to reply!
+<% end %>
 <hr>
 
 <!-- Comment replies -->
