@@ -6,15 +6,16 @@
   <p><%= @post.likes.count %> likes</p>
   
   <% if user_signed_in? %>
-    <% like = current_user.likes.find_by(post: @post) %>
+    <% like = current_user.likes.find_by(likeable: @post) %> 
     
     <% if like.nil? %>
-      <!-- button_to helper format -->
-      <%= button_to "Like", likes_path, params: { post_id: @post.id } %>
+      <!-- button_to helper format, for polymorphism another hidden field for likeable_type should be added -->
+      <%= button_to "Like", likes_path, params: { likeable_id: @post.id, likeable_type: "Post" } %>
       
       <!-- form_with format -->
       <%# <%= form_with url: likes_path do |form| %> 
-      <%#  <%= form.hidden_field :post_id, value: "#{@post.id}" %>
+      <%#  <%= form.hidden_field :likeable_id, value: "#{@post.id}" %>
+      <%#  <%= form.hidden_field :likeable_type, value: "Post" %>
       <%#  <%= form.submit "Like" %>
       <%# <% end %> 
     <% else %>
